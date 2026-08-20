@@ -7,11 +7,15 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/rahuldev403/forgeflow/internal/config"
+	"github.com/rahuldev403/forgeflow/internal/database"
 	"github.com/rahuldev403/forgeflow/internal/routes"
 )
 
 func main() {
 	config.LoadConfig()
+
+	database.Connect()
+	defer database.Close()
 
 	app := fiber.New(fiber.Config{
 		AppName: "ForgeFlow Backend v1",
