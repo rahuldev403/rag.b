@@ -1,14 +1,7 @@
-#:schema https://json.schemastore.org/any.json
-
-env_files = []
-root = "."
-testdata_dir = "testdata"
-tmp_dir = "tmp"
-
 [build]
   args_bin = []
   bin = "./tmp/main"
-  cmd = "go build -o ./cmd/api ./tmp/main "
+  cmd = "go build -o ./tmp/main ./cmd/api"
   delay = 1000
   entrypoint = ["./tmp/main"]
   exclude_dir = ["assets", "tmp", "vendor", "testdata"]
@@ -35,34 +28,8 @@ tmp_dir = "tmp"
   [build.windows]
     args_bin = []
     bin = "tmp\\main.exe"
-    cmd = "go build -o ./tmp/main.exe ."
+    cmd = "go build -o ./tmp/main.exe ./cmd/api"
     entrypoint = ["tmp\\main.exe"]
     full_bin = ""
     post_cmd = []
     pre_cmd = []
-
-[color]
-  app = ""
-  build = "yellow"
-  main = "magenta"
-  mode = ""
-  runner = "green"
-  watcher = "cyan"
-
-[log]
-  main_only = false
-  silent = false
-  time = false
-
-[misc]
-  clean_on_exit = false
-
-[proxy]
-  app_port = 0
-  app_start_timeout = 0
-  enabled = false
-  proxy_port = 0
-
-[screen]
-  clear_on_rebuild = false
-  keep_scroll = true
