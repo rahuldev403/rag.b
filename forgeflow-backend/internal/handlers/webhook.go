@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/rahuldev403/forgeflow/internal/database"
+	"github.com/rahuldev403/forgeflow/internal/handlers/engine"
 )
 
 func TriggerWebhook(c *fiber.Ctx) error {
@@ -47,6 +48,8 @@ func TriggerWebhook(c *fiber.Ctx) error {
 			"error": "Failed to trigger workflow",
 		})
 	}
+
+	engine.JobQueue <- executionID
 
 	return c.Status(fiber.StatusAccepted).JSON(fiber.Map{
 		"message":      "Workflow execution triggered",
