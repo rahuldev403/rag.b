@@ -15,4 +15,6 @@ func SetupRoutes(app *fiber.App) {
 	api.Get("/workflows", handlers.GetWorkflows)
 
 	api.Post("/workflows/:workflowId/nodes", handlers.CreateWorkflowNode)
+
+	api.Post("/webhooks/:workflowId", handlers.TriggerWebhook)
 }
